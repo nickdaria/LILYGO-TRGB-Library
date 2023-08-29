@@ -1,5 +1,6 @@
 # TRGB Interface Library for Arduino
 The [LILYGO TRGB](https://www.amazon.com/dp/B0BKG66T2W) is a compact and convenient ESP32-based microcontroller board with integrated battery management, round OLED display, and I2C interface port.
+
 <img src="resources/trgb-transparent.png" width="200"/>
 
 ## Why use this library?
