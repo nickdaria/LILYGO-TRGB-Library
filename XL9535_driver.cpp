@@ -26,9 +26,9 @@ void XL9535::begin(bool A0, bool A1, bool A2, TwoWire *wire) {
   is_found = true;
   _wire->beginTransmission(_address);
   if (!_wire->endTransmission()) {
-    Serial.println("Found xl9535");
+    //  Found
   } else {
-    Serial.println("xl9535 not found");
+    //  Not Found
     is_found = false;
   }
 }

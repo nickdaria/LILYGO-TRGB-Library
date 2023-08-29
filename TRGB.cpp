@@ -38,7 +38,7 @@ void TRGBModule::io_init() {
 }
 
 TRGB_ERR TRGBModule::start() {
-    this->i2c_init();
+    if(this->i2c_init() == false) { return TRGB_ERR_NOT_INIT; };
     this->xl_init();
     this->tft_init();
     this->draw_boot_logo();
@@ -83,7 +83,6 @@ void TRGBModule::tft_init(void) {
     }
     cmd++;
     }
-    Serial.println("Register setup complete");
     // Switch on backlight
     pinMode(PIN_NUM_BK_LIGHT, OUTPUT);
     digitalWrite(PIN_NUM_BK_LIGHT, LCD_BK_LIGHT_ON_LEVEL);
@@ -222,8 +221,8 @@ void TRGBModule::lvgl_start() {
 			LCD_H_RES * LCD_V_RES * sizeof(lv_color_t), MALLOC_CAP_SPIRAM);
 	assert(buf2);
 	lv_disp_draw_buf_init(&disp_buf, buf1, buf2, LCD_H_RES * LCD_V_RES);
-
-	Serial.println("Register display driver to LVGL");
+    //  Display driver registered to LVGL
+    
 	lv_disp_drv_init(&disp_drv);
 	disp_drv.hor_res = LCD_H_RES;
 	disp_drv.ver_res = LCD_V_RES;
