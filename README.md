@@ -63,3 +63,7 @@ void loop() {
 
 ## Todo
 1. Add native support for other graphics libraries such as Adafruit GFX
+
+## Credits
+- [LILYGO TRGB Examples](https://github.com/Xinyuan-LilyGO/T-RGB)
+- [fablabnbg TRGBArduinoSupport](https://github.com/fablabnbg/TRGBArduinoSupport)
