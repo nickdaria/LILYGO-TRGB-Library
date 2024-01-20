@@ -37,7 +37,13 @@ void TRGBModule::io_init() {
     pinMode(BAT_VOLT_PIN, ANALOG);
 }
 
-TRGB_ERR TRGBModule::start() {
+TRGB_ERR TRGBModule::start(bool enable_display, bool enable_touch, bool useLvgl) {
+    //  Config
+    this->_useDisplay = enable_display;
+    this->_useDisplayTouch = enable_touch;
+    this->_useLvgl = useLvgl;
+
+    //  Init
     if(this->i2c_init() == false) { return TRGB_ERR_NOT_INIT; };
     this->xl_init();
     this->tft_init();
@@ -129,21 +135,21 @@ void TRGBModule::lcd_send_data(uint8_t data) {
 }
 
 static void lv_touchpad_read(lv_indev_drv_t *indev_driver, lv_indev_data_t *data) {
-  if (touch_pin_get_int) {
-    uint8_t touch_points_num;
-    uint16_t x, y;
-    ft3267_read_pos(&touch_points_num, &x, &y);
-    if (touch_points_num > 0) {
-    	data->point.x = x;
-    	data->point.y = y;
-    	data->state = LV_INDEV_STATE_PRESSED;
+    if (touch_pin_get_int) {
+        uint8_t touch_points_num;
+        uint16_t x, y;
+        ft3267_read_pos(&touch_points_num, &x, &y);
+        if (touch_points_num > 0) {
+            data->point.x = x;
+            data->point.y = y;
+            data->state = LV_INDEV_STATE_PRESSED;
+        } else {
+            data->state =  LV_INDEV_STATE_RELEASED;
+        }
+        touch_pin_get_int = false;
     } else {
-    	data->state =  LV_INDEV_STATE_RELEASED;
+        data->state = LV_INDEV_STATE_RELEASED;
     }
-    touch_pin_get_int = false;
-  } else {
-    data->state = LV_INDEV_STATE_RELEASED;
-  }
 }
 
 static void lvgl_flush_cb(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t *color_map) {

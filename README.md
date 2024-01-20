@@ -12,6 +12,7 @@ To get around this, this library was designed to be configurable and extremely e
 Here is the usage when using the LVGL graphics library and a provided custom boot image. 
 - The LVGL interface is extremely easy to generate with tools like [SquareLine Studio](https://squareline.io/).
 - The boot logo is also easy to generate using the [LVGL Image Converter](https://lvgl.io/tools/imageconverter).
+- **Do not forget:** add the included lv_conf.h to include if using LVGL
 ```C++
 #include <Arduino.h>
 #include <TRGB.h>

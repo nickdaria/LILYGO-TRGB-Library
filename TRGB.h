@@ -27,13 +27,10 @@ enum TRGB_ERR {
 class TRGBModule {
     public:
         //  Library Required Functions
-        TRGB_ERR start();
+        TRGB_ERR start(bool enable_display = true, bool enable_touch = true, bool useLvgl = true);
 
         //  Display Configuration Setters
-        void useDisplay(bool enable_display = true) { this->_useDisplay = enable_display; };
-        void useDisplayTouch(bool enable_touch = true) { this->_useDisplayTouch = enable_touch; }
-        void useLvgl(bool useLvgl = true) { this->_useLvgl = useLvgl; }
-        void useBootImage(const uint8_t* bootImage) {this->_bootImage = bootImage; }   //  Could add a simple check, but I suppose you'll find any issues with it fairly quickly
+        void setBootImage(const uint8_t* bootImage) {this->_bootImage = bootImage; }   //  Could add a simple check, but I suppose you'll find any issues with it fairly quickly
 
         //  Display Functions
         void display_backlight(bool state);
