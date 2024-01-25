@@ -1,3 +1,5 @@
+> :warning: **Deprecation Notice**: Very shortly after this library release, LILYGO revamped the TRGB GitHub with proper PlatformIO board definitions, a usable library, and LVGL/GFX support. Therefore, I am deprecating this library to streamline development.
+
 # TRGB Interface Library for Arduino
 The [LILYGO TRGB](https://www.amazon.com/dp/B0BKG66T2W) is a compact and convenient ESP32-based microcontroller board with integrated battery management, round OLED display, and I2C interface port.
 
